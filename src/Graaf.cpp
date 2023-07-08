@@ -65,11 +65,6 @@ std::vector<Station*> Graaf::dijkstra(Graaf graaf, Station* startpunt, Station* 
         }
     
     }
-    //std::vector<Station*> prevList = {};
-    //for(Station* station : graaf.stations){
-    //    prevList.push_back(station->vorigStation);
-    //}
-    //return prevList;
 
     std::vector<Station*> result = {};
     Station* path = eindpunt;

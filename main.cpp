@@ -1,13 +1,13 @@
 #include <iostream>
 #include <type_traits>
 #include <queue>
-#include "include/Graaf.hpp"
-#include "include/Stap.hpp"
-#include "include/Station.hpp"
-#include "include/Autorit.hpp"
-#include "include/Treinrit.hpp"
-#include "include/Vlucht.hpp"
-#include "include/StationGreaterThan.hpp"
+#include "src/include/Graaf.hpp"
+#include "src/include/Stap.hpp"
+#include "src/include/Station.hpp"
+#include "src/include/Autorit.hpp"
+#include "src/include/Treinrit.hpp"
+#include "src/include/Vlucht.hpp"
+#include "src/include/StationGreaterThan.hpp"
 
 int main()
 {
