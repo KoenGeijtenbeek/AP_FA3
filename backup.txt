@@ -1,0 +1,57 @@
+std::vector<Station*> Graaf::dijkstra(Graaf graaf, Station* startpunt, Station* eindpunt){
+
+    std::priority_queue<Station*> queue = {};
+
+    for(Station* station : graaf.stations){
+        station->afstandTotBron = std::numeric_limits<int>::max();
+        station->vorigStation = nullptr;
+        queue.push_back(station);
+    }
+    startpunt->afstandTotBron = 0;
+    
+
+    while(queue.size()!=0){
+        Station* closest_station = nullptr;
+
+        for(Station* station : queue){
+            if(closest_station == nullptr){
+                closest_station = station;
+            }else if(station < closest_station){
+                closest_station = station;
+            }
+        }
+        
+        for(auto it = queue.begin(); it != queue.end(); it++){
+            if(*it == closest_station){
+                queue.erase(it);
+            }
+        }
+
+        std::vector<Stap*> connections = closest_station->connections;
+        std::vector<Station*> neighbours = {};
+
+        for(Stap* connection : connections){
+            neighbours.push_back(connection->getEnd());
+        }
+
+        int dist = 0;
+        
+        for(Station* neighbour : neighbours){
+            if(std::find(queue.begin(), queue.end(), neighbour) != queue.end()){
+                Stap* test = getConnection(closest_station, neighbour);
+                dist = closest_station->afstandTotBron + test->getDistance();
+                if(neighbour->afstandTotBron > dist){
+                    neighbour->afstandTotBron = dist;
+                    neighbour->vorigStation = closest_station;
+                }
+            }
+        }
+    }
+    std::vector<Station*> prevStations = {};
+    for(Station* station : graaf.stations){
+        prevStations.push_back(station->vorigStation);
+    }
+    return prevStations;
+    
+
+}
